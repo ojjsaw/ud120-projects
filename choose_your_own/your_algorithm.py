@@ -75,14 +75,40 @@ print "KNeighborsClassifier prediction time: ", round(time() - t0, 3), "s"
 
 print "KNeighborsClassifier(4): ", accuracy_score(pred, labels_test)
 
+# svm
+from sklearn import svm
+clfsvm = svm.SVC(kernel="rbf", C=10000.0)
 
+t0 = time()
+clfsvm = clfsvm.fit(features_train, labels_train)
+print "svm training time: ", round(time() - t0, 3), "s"
 
+t0 = time()
+pred = clfsvm.predict(features_test)
+print "svm prediction time: ", round(time() - t0, 3), "s"
 
+print "svm(rbg): ", accuracy_score(pred, labels_test)
+
+# naive_bayes
+from sklearn.naive_bayes import GaussianNB
+clfnb = GaussianNB()
+
+t0 = time()
+clfnb = clfnb.fit(features_train, labels_train)
+print "naive_bayes training time: ", round(time() - t0, 3), "s"
+
+t0 = time()
+pred = clfnb.predict(features_test)
+print "naive_bayes prediction time: ", round(time() - t0, 3), "s"
+
+print "naive_bayes: ", accuracy_score(pred, labels_test)
 
 
 try:
     #prettyPicture(clfk, features_test, labels_test)
     #prettyPicture(clfad, features_test, labels_test)
-    prettyPicture(clfrf, features_test, labels_test)
+    #prettyPicture(clfrf, features_test, labels_test)
+    #prettyPicture(clfsvm, features_test, labels_test)
+    prettyPicture(clfnb, features_test, labels_test)
 except NameError:
     pass

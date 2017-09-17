@@ -81,5 +81,8 @@ print "KNeighborsClassifier(4): ", accuracy_score(pred, labels_test)
 
 
 try:
+    #prettyPicture(clfk, features_test, labels_test)
+    #prettyPicture(clfad, features_test, labels_test)
+    prettyPicture(clfrf, features_test, labels_test)
 except NameError:
     pass

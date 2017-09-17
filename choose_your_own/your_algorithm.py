@@ -103,12 +103,27 @@ print "naive_bayes prediction time: ", round(time() - t0, 3), "s"
 
 print "naive_bayes: ", accuracy_score(pred, labels_test)
 
+# DecisionTree
+from sklearn import tree
+cldt = tree.DecisionTreeClassifier(min_samples_split=36)
+
+t0 = time()
+cldt = cldt.fit(features_train, labels_train)
+print "DecisionTree training time: ", round(time() - t0, 3), "s"
+
+t0 = time()
+pred = cldt.predict(features_test)
+print "DecisionTree prediction time: ", round(time() - t0, 3), "s"
+
+print "DecisionTree(36)", accuracy_score(pred, labels_test)
+
 
 try:
     #prettyPicture(clfk, features_test, labels_test)
     #prettyPicture(clfad, features_test, labels_test)
     #prettyPicture(clfrf, features_test, labels_test)
     #prettyPicture(clfsvm, features_test, labels_test)
-    prettyPicture(clfnb, features_test, labels_test)
+    #prettyPicture(clfnb, features_test, labels_test)
+    prettyPicture(cldt, features_test, labels_test)
 except NameError:
     pass
